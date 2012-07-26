@@ -1,5 +1,5 @@
-ui_print("CyanogenMOD Team and Koush kernel instalation presents NEW Kernel.");
 ui_print("CyanogenMOD & Teamhackung provided build auto tool (c) 2012");
+ui_print("Kernel by Benee");
 ui_print("Extracting System Files...");
 set_progress(1.000000);
 mount("ext4", "EMMC", "/dev/block/platform/s3c-sdhci.0/by-name/system", "/system");
