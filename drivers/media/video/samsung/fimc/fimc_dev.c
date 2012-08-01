@@ -1628,7 +1628,7 @@ int fimc_resume(struct platform_device *pdev)
 {
 	struct fimc_control *ctrl;
 	struct s3c_platform_fimc *pdata;
-	int id = pdev->id;
+	int in_use, id = pdev->id;
 
 	ctrl = get_fimc_ctrl(id);
 	pdata = to_fimc_plat(ctrl->dev);
