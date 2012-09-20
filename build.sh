@@ -23,7 +23,7 @@ setup ()
     KERNEL_DIR="$(dirname "$(readlink -f "$0")")"
     BUILD_DIR="$KERNEL_DIR/build"
 
-    CROSS_PREFIX="/home/vork/Android/linaro/bin/arm-linux-gnueabihf-"
+    CROSS_PREFIX="/home/bene/android/system/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-"
 }
 
 CheckVersion ()
@@ -109,7 +109,7 @@ build ()
     local module
     [ x = "x$NO_RM" ]
     mkdir -p "$target_dir"
-    [ x = "x$NO_DEFCONFIG" ] && make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm crespo_test_defconfig HOSTCC="$CCACHE gcc"
+    [ x = "x$NO_DEFCONFIG" ] && make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm herring_defconfig HOSTCC="$CCACHE gcc"
     if [ x = "x$NO_BUILD" ] ; then
         make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm HOSTCC="$CCACHE gcc" CROSS_COMPILE="$CCACHE $CROSS_PREFIX"  -j$cores  modules
         RET=$?
