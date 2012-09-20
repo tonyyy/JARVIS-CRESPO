@@ -67,6 +67,7 @@ CreateKernelZip ()
                 sleep 2
                 echo Sending modules
                 adb shell mount -o remount,rw /system
+                adb push $KERNEL_DIR/bin/system/lib/hw/power.herring.so /system/lib/hw/
                 for filename in $KERNEL_DIR/bin/system/lib/modules/* ; do
                     echo Sending $filename to /system/lib/modules
                     if adb push $filename /system/lib/modules ; then
