@@ -109,7 +109,7 @@ build ()
     local module
     [ x = "x$NO_RM" ]
     mkdir -p "$target_dir"
-    [ x = "x$NO_DEFCONFIG" ] && make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm herring_defconfig HOSTCC="$CCACHE gcc"
+    [ x = "x$NO_DEFCONFIG" ] && cp .config_crespo .config
     if [ x = "x$NO_BUILD" ] ; then
         make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm HOSTCC="$CCACHE gcc" CROSS_COMPILE="$CCACHE $CROSS_PREFIX"  -j$cores  modules
         RET=$?
