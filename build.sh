@@ -109,13 +109,10 @@ build ()
     local module
     [ x = "x$NO_RM" ]
     mkdir -p "$target_dir"
-    [ x = "x$NO_DEFCONFIG" ] && cp .config_crespo .config
+    [ x = "x$NO_DEFCONFIG" ] && make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm HOSTCC="$CCACHE gcc" CROSS_COMPILE="$CCACHE $CROSS_PREFIX" crespo_defconfig
     if [ x = "x$NO_BUILD" ] ; then
-        make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm HOSTCC="$CCACHE gcc" CROSS_COMPILE="$CCACHE $CROSS_PREFIX"  -j$cores  modules
+        make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm HOSTCC="$CCACHE gcc" CROSS_COMPILE="$CCACHE $CROSS_PREFIX"  -j$cores
         RET=$?
-        if [[ $RET == 0 ]] ; then
-            make -C "$KERNEL_DIR" O="$target_dir" ARCH=arm HOSTCC="$CCACHE gcc" CROSS_COMPILE="$CCACHE $CROSS_PREFIX"  -j$cores zImage
-            RET=$?
             if [[ $RET == 0 ]] ; then
                 cp "$target_dir"/arch/arm/boot/zImage bin/kernel/zImage
                 MODULES=( $(find $target_dir/* -type f -name *.ko) )
@@ -133,7 +130,6 @@ build ()
         else
             CompileError
         fi
-    fi
 }
 
 setup
