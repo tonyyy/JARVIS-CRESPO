@@ -23,7 +23,7 @@ setup ()
     KERNEL_DIR="$(dirname "$(readlink -f "$0")")"
     BUILD_DIR="$KERNEL_DIR/build"
 
-    CROSS_PREFIX="/home/bene/android/system/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-gcc"
+    CROSS_PREFIX="/home/bene/android/system/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-"
 }
 
 CheckVersion ()
